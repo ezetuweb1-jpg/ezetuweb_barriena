@@ -1,0 +1,172 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light dark;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: #f6f4ee;
+}
+
+.dark body {
+  background: #0b1117;
+}
+
+img {
+  -webkit-user-drag: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+  pointer-events: auto;
+}
+
+/* Masonry */
+.masonry {
+  column-gap: 1rem;
+}
+.masonry > * {
+  break-inside: avoid;
+  margin-bottom: 1rem;
+}
+@media (min-width: 640px) { .masonry { column-count: 2; } }
+@media (min-width: 1024px) { .masonry { column-count: 3; } }
+@media (min-width: 1536px) { .masonry { column-count: 4; } }
+
+/* Scrollbars */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(120,120,120,.35); border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(120,120,120,.55); }
+
+/* Leaflet */
+.leaflet-container {
+  font-family: 'Inter', sans-serif;
+  background: #c9d6cf;
+}
+.dark .leaflet-container { background: #141d29; }
+.leaflet-popup-content-wrapper, .leaflet-popup-tip {
+  background: #fff;
+  color: #0f1620;
+}
+.dark .leaflet-popup-content-wrapper, .dark .leaflet-popup-tip {
+  background: #1a2433;
+  color: #e6edf5;
+}
+
+/* Zoom control: bottom-right, above everything, with breathing room */
+.leaflet-bottom.leaflet-right {
+  bottom: 20px !important;
+  right: 20px !important;
+  z-index: 1000 !important;
+  pointer-events: auto;
+}
+.leaflet-control-zoom {
+  border: none !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,.18) !important;
+  border-radius: 12px !important;
+  overflow: hidden;
+}
+.leaflet-control-zoom a {
+  width: 36px !important;
+  height: 36px !important;
+  line-height: 36px !important;
+  font-size: 18px !important;
+  color: #2e5a41 !important;
+  background: rgba(255,255,255,.92) !important;
+  backdrop-filter: blur(8px);
+}
+.leaflet-control-zoom a:hover {
+  background: rgba(255,255,255,1) !important;
+}
+.dark .leaflet-control-zoom a {
+  background: rgba(26,36,51,.92) !important;
+  color: #e6edf5 !important;
+}
+.dark .leaflet-control-zoom a:hover {
+  background: rgba(26,36,51,1) !important;
+}
+
+.ezetu-pin {
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  color: white;
+  font-weight: 700;
+  font-size: 12px;
+  transition: transform .2s ease, box-shadow .2s ease;
+  cursor: pointer;
+}
+.ezetu-pin.active {
+  transform: scale(1.15);
+  z-index: 1000 !important;
+}
+
+.shimmer-bg {
+  background: linear-gradient(90deg, rgba(0,0,0,0) 0%, rgba(255,255,255,0.25) 50%, rgba(0,0,0,0) 100%);
+  background-size: 200% 100%;
+}
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+@keyframes slide-up {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+.animate-slide-up {
+  animation: slide-up 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes ezetu-pin-pulse {
+  0% { r: 5; opacity: 0.7; }
+  70% { r: 16; opacity: 0; }
+  100% { r: 16; opacity: 0; }
+}
+.ezetu-pin-pulse { animation: ezetu-pin-pulse 2s ease-out infinite; transform-origin: center; }
+
+.rsm-svg { width: 100%; height: 100%; }
+
+.passport-area,
+.passport-entity {
+  fill: #e2e8f0;
+  stroke: #94a3b8;
+  stroke-width: 0.6px;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+  transition: fill 0.25s ease, opacity 0.2s ease;
+}
+.dark .passport-area,
+.dark .passport-entity { fill: #334155; stroke: #64748b; }
+.passport-area[role='button'],
+.passport-entity[role='button'] { cursor: pointer; }
+.passport-area:hover,
+.passport-entity:hover { opacity: 0.85; }
+.passport-visited,
+.dark .passport-visited { fill: #10b981; stroke: #059669; }
+.passport-zoom-anim { transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1); }
+
+.world-map,
+.world-map * {
+  outline: none !important;
+  -webkit-tap-highlight-color: transparent !important;
+}
+.world-map path:focus,
+.world-map g:focus {
+  outline: none !important;
+}
+
+@keyframes ezetu-pin-ping {
+  0% { transform: scale(0.8); opacity: 0.5; }
+  70% { transform: scale(1.8); opacity: 0; }
+  100% { transform: scale(1.8); opacity: 0; }
+}
